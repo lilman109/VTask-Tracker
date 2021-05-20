@@ -1,5 +1,9 @@
 <template>
-	<button @click="onClick()" :style="{ background: color }" class="btn">
+	<button
+		@click="$emit('btn-click')"
+		:style="{ background: color }"
+		class="btn"
+	>
 		{{ text }}
 	</button>
 </template>
@@ -13,7 +17,7 @@ export default {
 	},
 	methods: {
 		onClick() {
-			console.log('akira button clicked');
+			this.$emit('btn-click');
 		},
 	},
 };

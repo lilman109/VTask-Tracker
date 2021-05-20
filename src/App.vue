@@ -1,24 +1,62 @@
 <template>
 	<div class="container">
-		<Header title="Task Tracker" />
-		<Tasks :tasks="tasks" />
+		<Header
+			title="Task Tracker"
+			@toggle-add="togglewAddTask"
+			:showAddTask="showAddTask"
+		/>
+		<div v-show="showAddTask">
+			<AddTask @add-task="addTask" />
+		</div>
+		<Tasks
+			@toggle-reminder="toggleReminder"
+			@delete-task="deleteTask"
+			:tasks="tasks"
+		/>
 	</div>
 </template>
 
 <script>
 import Header from './components/Header';
 import Tasks from './components/Tasks';
+import AddTask from './components/AddTask';
 
 export default {
 	name: 'App',
 	components: {
 		Header,
 		Tasks,
+		AddTask,
 	},
 	data() {
 		return {
 			tasks: [],
+			showAddTask: false,
 		};
+	},
+	methods: {
+		deleteTask(id) {
+			if (confirm('Are you sure?')) {
+				this.tasks = this.tasks.filter((task) => {
+					return task.id !== id;
+				});
+			}
+		},
+		toggleReminder(id) {
+			this.tasks = this.tasks.map((task) => {
+				if (task.id === id) {
+					return { ...task, reminder: !task.reminder };
+				} else {
+					return task;
+				}
+			});
+		},
+		addTask(newTask) {
+			this.tasks = this.tasks.concat(newTask);
+		},
+		togglewAddTask() {
+			this.showAddTask = !this.showAddTask;
+		},
 	},
 	created() {
 		this.tasks = [
