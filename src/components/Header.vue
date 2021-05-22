@@ -23,7 +23,6 @@ export default {
 	},
 	computed: {
 		isHomePage() {
-			console.log('akira ', this.$route.path);
 			if (this.$route.path === '/') {
 				return true;
 			} else {

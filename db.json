@@ -21,14 +21,8 @@
     {
       "text": "Dentist",
       "day": "March 15th, 2021",
-      "reminder": false,
-      "id": "UyWgaXA"
-    },
-    {
-      "text": "brush",
-      "day": "april",
       "reminder": true,
-      "id": "TU5LXl4"
+      "id": "UyWgaXA"
     }
   ]
 }
